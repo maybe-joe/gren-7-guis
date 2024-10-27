@@ -1,5 +1,6 @@
 projects := \
-	"1-counter"
+	"1-counter" \
+	"2-temperature-converter"
 
 .PHONY: $(projects)
 
