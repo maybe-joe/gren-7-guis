@@ -38,15 +38,24 @@ view : Model -> Html Msg
 view model =
     Html.div
         []
-        [ Html.input
-            [ Attribute.readonly True
-            , Attribute.value
-                <| String.fromInt model
+        [ Html.node
+            "link"
+            [ Attribute.attribute "rel" "stylesheet"
+            , Attribute.attribute "href" "../public/styles.css"
             ]
             []
-        , Html.button
-            [ Event.onClick Clicked
-            ]
-            [ Html.text "Count"
+        , Html.div
+            []
+            [ Html.input
+                [ Attribute.readonly True
+                , Attribute.value
+                    <| String.fromInt model
+                ]
+                []
+            , Html.button
+                [ Event.onClick Clicked
+                ]
+                [ Html.text "Count"
+                ]
             ]
         ]
