@@ -38,24 +38,46 @@ view : Model -> Html Msg
 view model =
     Html.div
         []
-        [ Html.node
-            "link"
-            [ Attribute.attribute "rel" "stylesheet"
-            , Attribute.attribute "href" "../public/styles.css"
-            ]
-            []
-        , Html.div
-            []
-            [ Html.input
-                [ Attribute.readonly True
-                , Attribute.value
-                    <| String.fromInt model
-                ]
-                []
-            , Html.button
-                [ Event.onClick Clicked
-                ]
-                [ Html.text "Count"
+        [ stylesheet "../public/styles.css"
+        , box
+            [ cluster
+                [ Html.input
+                    [ Attribute.readonly True
+                    , Attribute.value
+                        <| String.fromInt model
+                    ]
+                    []
+                , Html.button
+                    [ Event.onClick Clicked
+                    ]
+                    [ Html.text "Count"
+                    ]
                 ]
             ]
         ]
+
+
+stylesheet : String -> Html Msg
+stylesheet href =
+    Html.node
+        "link"
+        [ Attribute.attribute "rel" "stylesheet"
+        , Attribute.attribute "href" href
+        ]
+        []
+
+
+cluster : Array (Html Msg) -> Html Msg
+cluster children =
+    Html.div
+        [ Attribute.class "cluster"
+        ]
+        children
+
+
+box : Array (Html Msg) -> Html Msg
+box children =
+    Html.div
+        [ Attribute.class "box"
+        ]
+        children

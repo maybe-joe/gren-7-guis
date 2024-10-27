@@ -4453,17 +4453,29 @@ var $author$project$Main$update$ = function(msg, model) {
 };
 var $author$project$Main$update = F2($author$project$Main$update$);
 var $author$project$Main$Clicked = { $: 'Clicked' };
-var $gren_lang$browser$VirtualDom$attribute$ = function(key, value) {
-	return A2(_VirtualDom_attribute, _VirtualDom_noOnOrFormAction(key), _VirtualDom_noJavaScriptOrHtmlUri(value));
+var $gren_lang$browser$VirtualDom$property$ = function(key, value) {
+	return A2(_VirtualDom_property, _VirtualDom_noInnerHtmlOrFormAction(key), _VirtualDom_noJavaScriptOrHtmlUri(value));
 };
-var $gren_lang$browser$VirtualDom$attribute = F2($gren_lang$browser$VirtualDom$attribute$);
-var $gren_lang$browser$Html$Attributes$attribute = $gren_lang$browser$VirtualDom$attribute;
+var $gren_lang$browser$VirtualDom$property = F2($gren_lang$browser$VirtualDom$property$);
+var $gren_lang$browser$Html$Attributes$property = $gren_lang$browser$VirtualDom$property;
+var $gren_lang$core$Json$Encode$string = _Json_wrap;
+var $gren_lang$browser$Html$Attributes$stringProperty$ = function(key, string) {
+	return A2($gren_lang$browser$Html$Attributes$property, key, $gren_lang$core$Json$Encode$string(string));
+};
+var $gren_lang$browser$Html$Attributes$stringProperty = F2($gren_lang$browser$Html$Attributes$stringProperty$);
+var $gren_lang$browser$Html$Attributes$class = $gren_lang$browser$Html$Attributes$stringProperty('className');
 var $gren_lang$browser$VirtualDom$node = function(tag) {
 	return _VirtualDom_node(_VirtualDom_noScript(tag));
 };
 var $gren_lang$browser$Html$node = $gren_lang$browser$VirtualDom$node;
-var $gren_lang$browser$Html$button = $gren_lang$browser$Html$node('button');
 var $gren_lang$browser$Html$div = $gren_lang$browser$Html$node('div');
+var $author$project$Main$box = function(children) {
+	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('box') ], children);
+};
+var $gren_lang$browser$Html$button = $gren_lang$browser$Html$node('button');
+var $author$project$Main$cluster = function(children) {
+	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('cluster') ], children);
+};
 var $gren_lang$browser$Html$input = $gren_lang$browser$Html$node('input');
 var $gren_lang$browser$VirtualDom$Normal = function (a) {
 	return { $: 'Normal', a: a };
@@ -4477,26 +4489,24 @@ var $gren_lang$browser$Html$Events$onClick = function(msg) {
 	return $gren_lang$browser$Html$Events$on$('click', $gren_lang$core$Json$Decode$succeed(msg));
 };
 var $gren_lang$core$Json$Encode$bool = _Json_wrap;
-var $gren_lang$browser$VirtualDom$property$ = function(key, value) {
-	return A2(_VirtualDom_property, _VirtualDom_noInnerHtmlOrFormAction(key), _VirtualDom_noJavaScriptOrHtmlUri(value));
-};
-var $gren_lang$browser$VirtualDom$property = F2($gren_lang$browser$VirtualDom$property$);
-var $gren_lang$browser$Html$Attributes$property = $gren_lang$browser$VirtualDom$property;
 var $gren_lang$browser$Html$Attributes$boolProperty$ = function(key, bool) {
 	return A2($gren_lang$browser$Html$Attributes$property, key, $gren_lang$core$Json$Encode$bool(bool));
 };
 var $gren_lang$browser$Html$Attributes$boolProperty = F2($gren_lang$browser$Html$Attributes$boolProperty$);
 var $gren_lang$browser$Html$Attributes$readonly = $gren_lang$browser$Html$Attributes$boolProperty('readOnly');
+var $gren_lang$browser$VirtualDom$attribute$ = function(key, value) {
+	return A2(_VirtualDom_attribute, _VirtualDom_noOnOrFormAction(key), _VirtualDom_noJavaScriptOrHtmlUri(value));
+};
+var $gren_lang$browser$VirtualDom$attribute = F2($gren_lang$browser$VirtualDom$attribute$);
+var $gren_lang$browser$Html$Attributes$attribute = $gren_lang$browser$VirtualDom$attribute;
+var $author$project$Main$stylesheet = function(href) {
+	return A3($gren_lang$browser$Html$node, 'link', [ A2($gren_lang$browser$Html$Attributes$attribute, 'rel', 'stylesheet'), A2($gren_lang$browser$Html$Attributes$attribute, 'href', href) ], [  ]);
+};
 var $gren_lang$browser$VirtualDom$text = _VirtualDom_text;
 var $gren_lang$browser$Html$text = $gren_lang$browser$VirtualDom$text;
-var $gren_lang$core$Json$Encode$string = _Json_wrap;
-var $gren_lang$browser$Html$Attributes$stringProperty$ = function(key, string) {
-	return A2($gren_lang$browser$Html$Attributes$property, key, $gren_lang$core$Json$Encode$string(string));
-};
-var $gren_lang$browser$Html$Attributes$stringProperty = F2($gren_lang$browser$Html$Attributes$stringProperty$);
 var $gren_lang$browser$Html$Attributes$value = $gren_lang$browser$Html$Attributes$stringProperty('value');
 var $author$project$Main$view = function(model) {
-	return A2($gren_lang$browser$Html$div, [  ], [ A3($gren_lang$browser$Html$node, 'link', [ A2($gren_lang$browser$Html$Attributes$attribute, 'rel', 'stylesheet'), A2($gren_lang$browser$Html$Attributes$attribute, 'href', '../public/styles.css') ], [  ]), A2($gren_lang$browser$Html$div, [  ], [ A2($gren_lang$browser$Html$input, [ $gren_lang$browser$Html$Attributes$readonly(true), $gren_lang$browser$Html$Attributes$value($gren_lang$core$String$fromInt(model)) ], [  ]), A2($gren_lang$browser$Html$button, [ $gren_lang$browser$Html$Events$onClick($author$project$Main$Clicked) ], [ $gren_lang$browser$Html$text('Count') ]) ]) ]);
+	return A2($gren_lang$browser$Html$div, [  ], [ $author$project$Main$stylesheet('../public/styles.css'), $author$project$Main$box([ $author$project$Main$cluster([ A2($gren_lang$browser$Html$input, [ $gren_lang$browser$Html$Attributes$readonly(true), $gren_lang$browser$Html$Attributes$value($gren_lang$core$String$fromInt(model)) ], [  ]), A2($gren_lang$browser$Html$button, [ $gren_lang$browser$Html$Events$onClick($author$project$Main$Clicked) ], [ $gren_lang$browser$Html$text('Count') ]) ]) ]) ]);
 };
 var $author$project$Main$main = $gren_lang$browser$Browser$sandbox({ init: $author$project$Main$init, update: $author$project$Main$update, view: $author$project$Main$view });
 _Platform_export({'Main':{'init':$author$project$Main$main($gren_lang$core$Json$Decode$succeed({  }))(0)}});}(this.module ? this.module.exports : this));

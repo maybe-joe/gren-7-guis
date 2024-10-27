@@ -1,3 +1,18 @@
-body {
-    background-color: red;
+:root {
+    --spacing: 1rem;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing);
+}
+
+.box {
+    padding: var(--spacing);
 }
