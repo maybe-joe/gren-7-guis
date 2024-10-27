@@ -1,5 +1,5 @@
 projects := \
-	"1_counter"
+	"1-counter"
 
 .PHONY: $(projects)
 
