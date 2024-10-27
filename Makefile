@@ -8,4 +8,4 @@ all: $(projects)
 
 $(projects):
 	@echo "Compiling $@"
-	@cd "./$@/"; gren format --yes; gren make ./src/Main.gren --output=../gui/$@.html
+	@cd "./$@/"; gren format --yes; gren make ./src/Main.gren --output=../docs/$@.html
