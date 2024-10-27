@@ -4452,10 +4452,15 @@ var $author$project$Main$update$ = function(msg, model) {
 	return model;
 };
 var $author$project$Main$update = F2($author$project$Main$update$);
+var $gren_lang$browser$VirtualDom$node = function(tag) {
+	return _VirtualDom_node(_VirtualDom_noScript(tag));
+};
+var $gren_lang$browser$Html$node = $gren_lang$browser$VirtualDom$node;
+var $gren_lang$browser$Html$div = $gren_lang$browser$Html$node('div');
 var $gren_lang$browser$VirtualDom$text = _VirtualDom_text;
 var $gren_lang$browser$Html$text = $gren_lang$browser$VirtualDom$text;
 var $author$project$Main$view = function(model) {
-	return $gren_lang$browser$Html$text('TODO: Draw the rest of the owl');
+	return A2($gren_lang$browser$Html$div, [  ], [ $gren_lang$browser$Html$text('Hello') ]);
 };
 var $author$project$Main$main = $gren_lang$browser$Browser$sandbox({ init: $author$project$Main$init, update: $author$project$Main$update, view: $author$project$Main$view });
 _Platform_export({'Main':{'init':$author$project$Main$main($gren_lang$core$Json$Decode$succeed({  }))(0)}});}(this.module ? this.module.exports : this));
