@@ -2,6 +2,7 @@ module Main exposing ( main )
 
 import Browser
 import Html exposing ( Html )
+import Html.Attributes as Attribute
 
 
 main =
@@ -34,5 +35,13 @@ view : Model -> Html Msg
 view model =
     Html.div
         []
-        [ Html.text "Hello"
+        [ Html.input
+            [ Attribute.readonly True
+            , Attribute.value "1"
+            ]
+            []
+        , Html.button
+            []
+            [ Html.text "Count"
+            ]
         ]
