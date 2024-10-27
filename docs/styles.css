@@ -16,3 +16,7 @@
 .box {
     padding: var(--spacing);
 }
+
+.display\:contents {
+    display: contents;
+}

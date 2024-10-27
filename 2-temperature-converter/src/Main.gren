@@ -3,7 +3,7 @@ module Main exposing ( main )
 import Browser
 import Html exposing ( Html )
 import Html.Attributes as Attribute
-import Html.Events as Events
+import Html.Events as Event
 
 
 main =
@@ -15,23 +15,149 @@ main =
 
 
 type alias Model =
-    {}
+    { celsius : String
+    , fahrenheit : String
+    }
 
 
 init : Model
 init =
-    {}
+    { celsius = "1.0"
+    , fahrenheit = "1.0"
+    }
 
 
 type Msg
-    = NoOp
+    = OnInputCelsius String
+    | OnInputFahrenheit String
 
 
 update : Msg -> Model -> Model
 update msg model =
-    model
+    case msg of
+        OnInputCelsius celsius ->
+            { celsius = celsius
+            , fahrenheit =
+                celsius
+                    |> String.toFloat
+                    |> Maybe.map celsiusToFahrenheit
+                    |> Maybe.map String.fromFloat
+                    |> Maybe.withDefault model.fahrenheit
+            }
+
+        OnInputFahrenheit fahrenheit ->
+            { celsius =
+                fahrenheit
+                    |> String.toFloat
+                    |> Maybe.map fahrenheitToCelsius
+                    |> Maybe.map String.fromFloat
+                    |> Maybe.withDefault model.celsius
+            , fahrenheit = fahrenheit
+            }
+
+
+celsiusToFahrenheit : Float -> Float
+celsiusToFahrenheit celsius =
+    celsius * (9.0 / 5.0) + 32.0
+
+
+fahrenheitToCelsius : Float -> Float
+fahrenheitToCelsius fahrenheit =
+    (fahrenheit - 32) * (5.0 / 9.0)
 
 
 view : Model -> Html Msg
 view model =
-    Html.text "Hello"
+    let
+        celsius =
+            inputProperties "celsius" "Celsius" model.celsius OnInputCelsius
+
+        fahrenheit =
+            inputProperties "fahrenheit" "Fahrenheit" model.fahrenheit OnInputFahrenheit
+    in
+    Html.div
+        []
+        [ stylesheet
+        , box
+            [ cluster
+                [ formControl celsius
+                , Html.p
+                    []
+                    [ Html.text "="
+                    ]
+                , formControl fahrenheit
+                ]
+            ]
+        ]
+
+
+stylesheet : Html Msg
+stylesheet =
+    Html.node
+        "link"
+        [ Attribute.attribute "rel" "stylesheet"
+        , Attribute.attribute "href" "styles.css"
+        ]
+        []
+
+
+box : Array (Html Msg) -> Html Msg
+box children =
+    Html.div
+        [ Attribute.class "box"
+        ]
+        children
+
+
+cluster : Array (Html Msg) -> Html Msg
+cluster children =
+    Html.div
+        [ Attribute.class "cluster"
+        , Attribute.style "align-items" "baseline"
+        ]
+        children
+
+
+type alias InputProperties =
+    { id : String
+    , label : String
+    , value : String
+    , onInput : String -> Msg
+    }
+
+
+inputProperties : String -> String -> String -> (String -> Msg) -> InputProperties
+inputProperties id label value onInput =
+    { id = id
+    , label = label
+    , value = value
+    , onInput = onInput
+    }
+
+
+formControl : InputProperties -> Html Msg
+formControl control =
+    let
+        { id, label, value, onInput } =
+            control
+    in
+    Html.div
+        [ Attribute.class "display:contents"
+        ]
+        [ Html.input
+            [ Attribute.style "text-align" "end"
+            , Attribute.id id
+            , Attribute.type_ "number"
+            , Attribute.step "0.1"
+            , Attribute.placeholder "0.0"
+            , Attribute.value value
+            , Event.onInput onInput
+            ]
+            [ Html.text value
+            ]
+        , Html.label
+            [ Attribute.for id
+            ]
+            [ Html.text label
+            ]
+        ]
