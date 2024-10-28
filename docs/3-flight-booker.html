@@ -91,7 +91,8 @@ function A9(fun, a, b, c, d, e, f, g, h, i) {
   return fun.a === 9 ? fun.f(a, b, c, d, e, f, g, h, i) : fun(a)(b)(c)(d)(e)(f)(g)(h)(i);
 }
 
-var $author$project$Main$init = {  };
+var $author$project$Main$OneWay = { $: 'OneWay' };
+var $author$project$Main$init = { departOn: '01.01.2024', flightType: $author$project$Main$OneWay, returnOn: '01.01.2024' };
 
 
 // ELEMENT
@@ -4448,14 +4449,225 @@ var $gren_lang$browser$Browser$sandbox = function(impl) {
 				return { command: $gren_lang$core$Platform$Cmd$none, model: A2(impl.update, msg, model) };
 			}), view: impl.view });
 };
+var $author$project$Main$ReturnFlight = { $: 'ReturnFlight' };
+var $author$project$Main$flightTypeFromString = function(str) {
+	if (str === 'Return flight') {
+		return $author$project$Main$ReturnFlight;
+	} else {
+		return $author$project$Main$OneWay;
+	}
+};
 var $author$project$Main$update$ = function(msg, model) {
-	return model;
+	switch (msg.$) {
+		case 'OnInputFlightType':
+			var value = msg.a;
+			return _Utils_update(model, { flightType: $author$project$Main$flightTypeFromString(value) });
+		case 'OnInputDepartOn':
+			var value = msg.a;
+			return _Utils_update(model, { departOn: value });
+		default:
+			var value = msg.a;
+			return _Utils_update(model, { returnOn: value });
+	}
 };
 var $author$project$Main$update = F2($author$project$Main$update$);
+var $author$project$Main$OnInputDepartOn = function (a) {
+	return { $: 'OnInputDepartOn', a: a };
+};
+var $author$project$Main$OnInputFlightType = function (a) {
+	return { $: 'OnInputFlightType', a: a };
+};
+var $author$project$Main$OnInputReturnOn = function (a) {
+	return { $: 'OnInputReturnOn', a: a };
+};
+var $gren_lang$browser$VirtualDom$node = function(tag) {
+	return _VirtualDom_node(_VirtualDom_noScript(tag));
+};
+var $gren_lang$browser$Html$node = $gren_lang$browser$VirtualDom$node;
+var $gren_lang$browser$Html$button = $gren_lang$browser$Html$node('button');
+var $gren_lang$browser$VirtualDom$property$ = function(key, value) {
+	return A2(_VirtualDom_property, _VirtualDom_noInnerHtmlOrFormAction(key), _VirtualDom_noJavaScriptOrHtmlUri(value));
+};
+var $gren_lang$browser$VirtualDom$property = F2($gren_lang$browser$VirtualDom$property$);
+var $gren_lang$browser$Html$Attributes$property = $gren_lang$browser$VirtualDom$property;
+var $gren_lang$core$Json$Encode$string = _Json_wrap;
+var $gren_lang$browser$Html$Attributes$stringProperty$ = function(key, string) {
+	return A2($gren_lang$browser$Html$Attributes$property, key, $gren_lang$core$Json$Encode$string(string));
+};
+var $gren_lang$browser$Html$Attributes$stringProperty = F2($gren_lang$browser$Html$Attributes$stringProperty$);
+var $gren_lang$browser$Html$Attributes$class = $gren_lang$browser$Html$Attributes$stringProperty('className');
+var $gren_lang$core$Json$Encode$bool = _Json_wrap;
+var $gren_lang$browser$Html$Attributes$boolProperty$ = function(key, bool) {
+	return A2($gren_lang$browser$Html$Attributes$property, key, $gren_lang$core$Json$Encode$bool(bool));
+};
+var $gren_lang$browser$Html$Attributes$boolProperty = F2($gren_lang$browser$Html$Attributes$boolProperty$);
+var $gren_lang$browser$Html$Attributes$disabled = $gren_lang$browser$Html$Attributes$boolProperty('disabled');
+var $gren_lang$browser$Html$div = $gren_lang$browser$Html$node('div');
+var $author$project$Main$flightTypeToString = function(type_) {
+	if (type_.$ === 'ReturnFlight') {
+		return 'Return flight';
+	} else {
+		return 'One-way flight';
+	}
+};
+var $gren_lang$browser$Html$input = $gren_lang$browser$Html$node('input');
+var $gren_lang$core$Basics$compare = _Utils_compare;
+var $author$project$Main$compareDates$ = function(lhs, rhs) {
+	var order = [ A2($gren_lang$core$Basics$compare, lhs.year, rhs.year), A2($gren_lang$core$Basics$compare, lhs.month, rhs.month), A2($gren_lang$core$Basics$compare, lhs.day, rhs.day) ];
+	_v0$4:
+	while (true) {
+		if (order.length === 3) {
+			switch (order[0].$) {
+				case 'EQ':
+					if ((order[1].$ === 'EQ') && (order[2].$ === 'EQ')) {
+						var _v1 = order[0];
+						var _v2 = order[1];
+						var _v3 = order[2];
+						return $gren_lang$core$Basics$EQ;
+					} else {
+						break _v0$4;
+					}
+				case 'GT':
+					if (order[1].$ === 'GT') {
+						if (order[2].$ === 'GT') {
+							var _v4 = order[0];
+							var _v5 = order[1];
+							var _v6 = order[2];
+							return $gren_lang$core$Basics$GT;
+						} else {
+							var _v7 = order[0];
+							var _v8 = order[1];
+							return $gren_lang$core$Basics$GT;
+						}
+					} else {
+						var _v9 = order[0];
+						return $gren_lang$core$Basics$GT;
+					}
+				default:
+					break _v0$4;
+			}
+		} else {
+			break _v0$4;
+		}
+	}
+	return $gren_lang$core$Basics$LT;
+};
+var $author$project$Main$compareDates = F2($author$project$Main$compareDates$);
+var $gren_lang$core$Maybe$map2$ = function(func, ma, mb) {
+	if (ma.$ === 'Nothing') {
+		return $gren_lang$core$Maybe$Nothing;
+	} else {
+		var a = ma.a;
+		if (mb.$ === 'Nothing') {
+			return $gren_lang$core$Maybe$Nothing;
+		} else {
+			var b = mb.a;
+			return $gren_lang$core$Maybe$Just(A2(func, a, b));
+		}
+	}
+};
+var $gren_lang$core$Maybe$map2 = F3($gren_lang$core$Maybe$map2$);
+var $author$project$Main$isButtonDisabled$ = function(type_, departOn, returnOn) {
+	if (type_.$ === 'OneWay') {
+		return _Utils_eq(departOn, $gren_lang$core$Maybe$Nothing);
+	} else {
+		var order = $gren_lang$core$Maybe$map2$($author$project$Main$compareDates, departOn, returnOn);
+		if (order.$ === 'Just') {
+			if (order.a.$ === 'GT') {
+				var _v2 = order.a;
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return true;
+		}
+	}
+};
+var $author$project$Main$isButtonDisabled = F3($author$project$Main$isButtonDisabled$);
+var $gren_lang$browser$Html$Events$alwaysStop = function(msg) {
+	return { message: msg, stopPropagation: true };
+};
+var $gren_lang$browser$VirtualDom$MayStopPropagation = function (a) {
+	return { $: 'MayStopPropagation', a: a };
+};
+var $gren_lang$browser$VirtualDom$on = _VirtualDom_on;
+var $gren_lang$browser$Html$Events$stopPropagationOn$ = function(event, decoder) {
+	return A2($gren_lang$browser$VirtualDom$on, event, $gren_lang$browser$VirtualDom$MayStopPropagation(decoder));
+};
+var $gren_lang$browser$Html$Events$stopPropagationOn = F2($gren_lang$browser$Html$Events$stopPropagationOn$);
+var $gren_lang$core$Json$Decode$field = _Json_decodeField;
+var $gren_lang$core$Json$Decode$at$ = function(fields, decoder) {
+	return A3($gren_lang$core$Array$foldr, $gren_lang$core$Json$Decode$field, decoder, fields);
+};
+var $gren_lang$core$Json$Decode$at = F2($gren_lang$core$Json$Decode$at$);
+var $gren_lang$core$Json$Decode$string = _Json_decodeString;
+var $gren_lang$browser$Html$Events$targetValue = $gren_lang$core$Json$Decode$at$([ 'target', 'value' ], $gren_lang$core$Json$Decode$string);
+var $gren_lang$browser$Html$Events$onInput = function(tagger) {
+	return $gren_lang$browser$Html$Events$stopPropagationOn$('input', A2($gren_lang$core$Json$Decode$map, $gren_lang$browser$Html$Events$alwaysStop, A2($gren_lang$core$Json$Decode$map, tagger, $gren_lang$browser$Html$Events$targetValue)));
+};
+var $gren_lang$browser$Html$option = $gren_lang$browser$Html$node('option');
+var $gren_lang$core$Array$flatMap = _Array_flatMap;
+var $gren_lang$core$Array$filterMap$ = function(mapper, array) {
+	return A2($gren_lang$core$Array$flatMap, function(v) {
+			var _v0 = mapper(v);
+			if (_v0.$ === 'Just') {
+				var newValue = _v0.a;
+				return [ newValue ];
+			} else {
+				return [  ];
+			}
+		}, array);
+};
+var $gren_lang$core$Array$filterMap = F2($gren_lang$core$Array$filterMap$);
+var $author$project$Main$parseDate = function(str) {
+	if ($gren_lang$core$String$length(str) === 10) {
+		var parts = $gren_lang$core$Array$filterMap$($gren_lang$core$String$toInt, A2($gren_lang$core$String$split, '.', str));
+		if (parts.length === 3) {
+			var day = parts[0];
+			var month = parts[1];
+			var year = parts[2];
+			return $gren_lang$core$Maybe$Just({ day: day, month: month, year: year });
+		} else {
+			return $gren_lang$core$Maybe$Nothing;
+		}
+	} else {
+		return $gren_lang$core$Maybe$Nothing;
+	}
+};
+var $gren_lang$browser$Html$select = $gren_lang$browser$Html$node('select');
+var $author$project$Main$stack = function(children) {
+	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('stack'), $gren_lang$browser$Html$Attributes$class('max-inline-size:measure') ], children);
+};
+var $gren_lang$browser$VirtualDom$style = _VirtualDom_style;
+var $gren_lang$browser$Html$Attributes$style = $gren_lang$browser$VirtualDom$style;
+var $gren_lang$browser$VirtualDom$attribute$ = function(key, value) {
+	return A2(_VirtualDom_attribute, _VirtualDom_noOnOrFormAction(key), _VirtualDom_noJavaScriptOrHtmlUri(value));
+};
+var $gren_lang$browser$VirtualDom$attribute = F2($gren_lang$browser$VirtualDom$attribute$);
+var $gren_lang$browser$Html$Attributes$attribute = $gren_lang$browser$VirtualDom$attribute;
+var $author$project$Main$stylesheet = A3($gren_lang$browser$Html$node, 'link', [ A2($gren_lang$browser$Html$Attributes$attribute, 'rel', 'stylesheet'), A2($gren_lang$browser$Html$Attributes$attribute, 'href', 'styles.css') ], [  ]);
 var $gren_lang$browser$VirtualDom$text = _VirtualDom_text;
 var $gren_lang$browser$Html$text = $gren_lang$browser$VirtualDom$text;
+var $gren_lang$browser$Html$Attributes$value = $gren_lang$browser$Html$Attributes$stringProperty('value');
 var $author$project$Main$view = function(model) {
-	return $gren_lang$browser$Html$text('hello');
+	var returnOn = $author$project$Main$parseDate(model.returnOn);
+	var returnOnBackgroundColor = function () {
+		if (returnOn.$ === 'Nothing') {
+			return 'red';
+		} else {
+			return 'white';
+		}
+	}();
+	var departOn = $author$project$Main$parseDate(model.departOn);
+	var departOnBackgroundColor = function () {
+		if (departOn.$ === 'Nothing') {
+			return 'red';
+		} else {
+			return 'white';
+		}
+	}();
+	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('box') ], [ $author$project$Main$stylesheet, $author$project$Main$stack([ A2($gren_lang$browser$Html$select, [ $gren_lang$browser$Html$Events$onInput($author$project$Main$OnInputFlightType) ], [ A2($gren_lang$browser$Html$option, [  ], [ $gren_lang$browser$Html$text($author$project$Main$flightTypeToString($author$project$Main$OneWay)) ]), A2($gren_lang$browser$Html$option, [  ], [ $gren_lang$browser$Html$text($author$project$Main$flightTypeToString($author$project$Main$ReturnFlight)) ]) ]), A2($gren_lang$browser$Html$input, [ A2($gren_lang$browser$Html$Attributes$style, 'background-color', departOnBackgroundColor), $gren_lang$browser$Html$Attributes$value(model.departOn), $gren_lang$browser$Html$Events$onInput($author$project$Main$OnInputDepartOn) ], [  ]), A2($gren_lang$browser$Html$input, [ A2($gren_lang$browser$Html$Attributes$style, 'background-color', returnOnBackgroundColor), $gren_lang$browser$Html$Attributes$value(model.returnOn), $gren_lang$browser$Html$Attributes$disabled(_Utils_eq(model.flightType, $author$project$Main$OneWay)), $gren_lang$browser$Html$Events$onInput($author$project$Main$OnInputReturnOn) ], [  ]), A2($gren_lang$browser$Html$button, [ $gren_lang$browser$Html$Attributes$disabled($author$project$Main$isButtonDisabled$(model.flightType, departOn, returnOn)) ], [ $gren_lang$browser$Html$text('Book') ]) ]) ]);
 };
 var $author$project$Main$main = $gren_lang$browser$Browser$sandbox({ init: $author$project$Main$init, update: $author$project$Main$update, view: $author$project$Main$view });
 _Platform_export({'Main':{'init':$author$project$Main$main($gren_lang$core$Json$Decode$succeed({  }))(0)}});}(this.module ? this.module.exports : this));

@@ -15,23 +15,236 @@ main =
 
 
 type alias Model =
-    {}
+    { flightType : FlightType
+    , departOn : String
+    , returnOn : String
+    }
 
 
 init : Model
 init =
-    {}
+    { flightType = OneWay
+    , departOn = "01.01.2024"
+    , returnOn = "01.01.2024"
+    }
 
 
 type Msg
-    = NoOp
+    = OnInputFlightType String
+    | OnInputDepartOn String
+    | OnInputReturnOn String
 
 
 update : Msg -> Model -> Model
 update msg model =
-    model
+    case msg of
+        OnInputFlightType value ->
+            { model | flightType = flightTypeFromString value }
+
+        OnInputDepartOn value ->
+            { model | departOn = value }
+
+        OnInputReturnOn value ->
+            { model | returnOn = value }
 
 
 view : Model -> Html Msg
 view model =
-    Html.text "hello"
+    let
+        departOn =
+            parseDate model.departOn
+
+        departOnBackgroundColor =
+            case departOn of
+                Nothing ->
+                    "red"
+
+                _ ->
+                    "white"
+
+        returnOn =
+            parseDate model.returnOn
+
+        returnOnBackgroundColor =
+            case returnOn of
+                Nothing ->
+                    "red"
+
+                _ ->
+                    "white"
+    in
+    Html.div
+        [ Attribute.class "box"
+        ]
+        [ stylesheet
+        , stack
+            [ Html.select
+                [ Event.onInput OnInputFlightType
+                ]
+                [ Html.option
+                    []
+                    [ Html.text (flightTypeToString OneWay)
+                    ]
+                , Html.option
+                    []
+                    [ Html.text (flightTypeToString ReturnFlight)
+                    ]
+                ]
+            , Html.input
+                [ Attribute.style "background-color" departOnBackgroundColor
+                , Attribute.value model.departOn
+                , Event.onInput OnInputDepartOn
+                ]
+                []
+            , Html.input
+                [ Attribute.style "background-color" returnOnBackgroundColor
+                , Attribute.value model.returnOn
+                , Attribute.disabled (model.flightType == OneWay)
+                , Event.onInput OnInputReturnOn
+                ]
+                []
+            , Html.button
+                [ Attribute.disabled (isButtonDisabled model.flightType departOn returnOn)
+                ]
+                [ Html.text "Book"
+                ]
+            ]
+        ]
+
+
+stylesheet : Html Msg
+stylesheet =
+    Html.node
+        "link"
+        [ Attribute.attribute "rel" "stylesheet"
+        , Attribute.attribute "href" "styles.css"
+        ]
+        []
+
+
+stack : Array (Html Msg) -> Html Msg
+stack children =
+    Html.div
+        [ Attribute.class "stack"
+        , Attribute.class "max-inline-size:measure"
+        ]
+        children
+
+
+isButtonDisabled : FlightType -> Maybe Date -> Maybe Date -> Bool
+isButtonDisabled type_ departOn returnOn =
+    case type_ of
+        OneWay ->
+            departOn == Nothing
+
+        ReturnFlight ->
+            let
+                order =
+                    Maybe.map2 compareDates departOn returnOn
+            in
+            case order of
+                Just GT ->
+                    True
+
+                Nothing ->
+                    True
+
+                _ ->
+                    False
+
+
+type FlightType
+    = OneWay
+    | ReturnFlight
+
+
+flightTypeToString : FlightType -> String
+flightTypeToString type_ =
+    case type_ of
+        ReturnFlight ->
+            "Return flight"
+
+        OneWay ->
+            "One-way flight"
+
+
+flightTypeFromString : String -> FlightType
+flightTypeFromString str =
+    case str of
+        "Return flight" ->
+            ReturnFlight
+
+        _ ->
+            OneWay
+
+
+type alias Date =
+    { year : Int
+    , month : Int
+    , day : Int
+    }
+
+
+parseDate : String -> Maybe Date
+parseDate str =
+    if String.length str == 10 then
+        let
+            parts =
+                str
+                    |> String.split "."
+                    |> Array.filterMap String.toInt
+        in
+        case parts of
+            [ day, month, year ] ->
+                Just
+                    { year = year
+                    , month = month
+                    , day = day
+                    }
+
+            _ ->
+                Nothing
+    else
+        Nothing
+
+
+formatDate : Date -> String
+formatDate date =
+    let
+        parts =
+            [ String.fromInt date.day
+            , String.fromInt date.month
+            , String.fromInt date.year
+            ]
+    in
+    String.join "." parts
+
+
+compareDates : Date -> Date -> Order
+compareDates lhs rhs =
+    let
+        order =
+            [ compare lhs.year rhs.year
+            , compare lhs.month rhs.month
+            , compare lhs.day rhs.day
+            ]
+    in
+    case order of
+        -- same day
+        [ EQ, EQ, EQ ] ->
+            EQ
+
+        -- day is in the futre
+        [ GT, GT, GT ] ->
+            GT
+
+        -- month is in the future
+        [ GT, GT, _ ] ->
+            GT
+
+        -- year is in the future
+        [ GT, _, _ ] ->
+            GT
+
+        _ ->
+            LT

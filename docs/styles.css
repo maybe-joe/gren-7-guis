@@ -1,10 +1,25 @@
 :root {
     --spacing: 1rem;
+    --measure: 60ch;
 }
 
 * {
     box-sizing: border-box;
     font-family: sans-serif;
+}
+
+.stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.stack > * {
+    margin-block: 0;
+}
+
+.stack > * + * {
+    margin-block-start: var(--spacing, 1.5rem);
 }
 
 .cluster {
@@ -19,4 +34,8 @@
 
 .display\:contents {
     display: contents;
+}
+
+.max-inline-size\:measure {
+    max-inline-size: var(--measure);
 }
