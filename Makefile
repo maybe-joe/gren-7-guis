@@ -10,4 +10,4 @@ all: $(projects)
 
 $(projects):
 	@echo "Compiling $@"
-	@gren format --yes; gren make ./src/$@.gren --output=../docs/$@.js
+	@gren format --yes; gren make ./src/$@.gren --output=./docs/js/$@.js
