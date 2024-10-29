@@ -1,17 +1,3 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Main</title>
-  <style>body { padding: 0; margin: 0; }</style>
-</head>
-
-<body>
-
-<pre id="gren"></pre>
-
-<script>
-try {
 (function(scope){
 'use strict';
 
@@ -91,7 +77,7 @@ function A9(fun, a, b, c, d, e, f, g, h, i) {
   return fun.a === 9 ? fun.f(a, b, c, d, e, f, g, h, i) : fun(a)(b)(c)(d)(e)(f)(g)(h)(i);
 }
 
-var $author$project$Main$init = 0;
+var $author$project$Counter$init = 0;
 
 
 // ELEMENT
@@ -4448,11 +4434,11 @@ var $gren_lang$browser$Browser$sandbox = function(impl) {
 				return { command: $gren_lang$core$Platform$Cmd$none, model: A2(impl.update, msg, model) };
 			}), view: impl.view });
 };
-var $author$project$Main$update$ = function(msg, model) {
+var $author$project$Counter$update$ = function(msg, model) {
 	return model + 1;
 };
-var $author$project$Main$update = F2($author$project$Main$update$);
-var $author$project$Main$Clicked = { $: 'Clicked' };
+var $author$project$Counter$update = F2($author$project$Counter$update$);
+var $author$project$Counter$Clicked = { $: 'Clicked' };
 var $gren_lang$browser$VirtualDom$property$ = function(key, value) {
 	return A2(_VirtualDom_property, _VirtualDom_noInnerHtmlOrFormAction(key), _VirtualDom_noJavaScriptOrHtmlUri(value));
 };
@@ -4469,11 +4455,11 @@ var $gren_lang$browser$VirtualDom$node = function(tag) {
 };
 var $gren_lang$browser$Html$node = $gren_lang$browser$VirtualDom$node;
 var $gren_lang$browser$Html$div = $gren_lang$browser$Html$node('div');
-var $author$project$Main$box = function(children) {
+var $author$project$Counter$box = function(children) {
 	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('box') ], children);
 };
 var $gren_lang$browser$Html$button = $gren_lang$browser$Html$node('button');
-var $author$project$Main$cluster = function(children) {
+var $author$project$Counter$cluster = function(children) {
 	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('cluster') ], children);
 };
 var $gren_lang$browser$Html$input = $gren_lang$browser$Html$node('input');
@@ -4499,32 +4485,14 @@ var $gren_lang$browser$VirtualDom$attribute$ = function(key, value) {
 };
 var $gren_lang$browser$VirtualDom$attribute = F2($gren_lang$browser$VirtualDom$attribute$);
 var $gren_lang$browser$Html$Attributes$attribute = $gren_lang$browser$VirtualDom$attribute;
-var $author$project$Main$stylesheet = function(href) {
+var $author$project$Counter$stylesheet = function(href) {
 	return A3($gren_lang$browser$Html$node, 'link', [ A2($gren_lang$browser$Html$Attributes$attribute, 'rel', 'stylesheet'), A2($gren_lang$browser$Html$Attributes$attribute, 'href', href) ], [  ]);
 };
 var $gren_lang$browser$VirtualDom$text = _VirtualDom_text;
 var $gren_lang$browser$Html$text = $gren_lang$browser$VirtualDom$text;
 var $gren_lang$browser$Html$Attributes$value = $gren_lang$browser$Html$Attributes$stringProperty('value');
-var $author$project$Main$view = function(model) {
-	return A2($gren_lang$browser$Html$div, [  ], [ $author$project$Main$stylesheet('styles.css'), $author$project$Main$box([ $author$project$Main$cluster([ A2($gren_lang$browser$Html$input, [ $gren_lang$browser$Html$Attributes$readonly(true), $gren_lang$browser$Html$Attributes$value($gren_lang$core$String$fromInt(model)) ], [  ]), A2($gren_lang$browser$Html$button, [ $gren_lang$browser$Html$Events$onClick($author$project$Main$Clicked) ], [ $gren_lang$browser$Html$text('Count') ]) ]) ]) ]);
+var $author$project$Counter$view = function(model) {
+	return A2($gren_lang$browser$Html$div, [  ], [ $author$project$Counter$stylesheet('styles.css'), $author$project$Counter$box([ $author$project$Counter$cluster([ A2($gren_lang$browser$Html$input, [ $gren_lang$browser$Html$Attributes$readonly(true), $gren_lang$browser$Html$Attributes$value($gren_lang$core$String$fromInt(model)) ], [  ]), A2($gren_lang$browser$Html$button, [ $gren_lang$browser$Html$Events$onClick($author$project$Counter$Clicked) ], [ $gren_lang$browser$Html$text('Count') ]) ]) ]) ]);
 };
-var $author$project$Main$main = $gren_lang$browser$Browser$sandbox({ init: $author$project$Main$init, update: $author$project$Main$update, view: $author$project$Main$view });
-_Platform_export({'Main':{'init':$author$project$Main$main($gren_lang$core$Json$Decode$succeed({  }))(0)}});}(this.module ? this.module.exports : this));
-
-  var app = Gren.Main.init({ node: document.getElementById("gren") });
-}
-catch (e)
-{
-  // display initialization errors (e.g. bad flags, infinite recursion)
-  var header = document.createElement("h1");
-  header.style.fontFamily = "monospace";
-  header.innerText = "Initialization Error";
-  var pre = document.getElementById("gren");
-  document.body.insertBefore(header, pre);
-  pre.innerText = e;
-  throw e;
-}
-</script>
-
-</body>
-</html>
+var $author$project$Counter$main = $gren_lang$browser$Browser$sandbox({ init: $author$project$Counter$init, update: $author$project$Counter$update, view: $author$project$Counter$view });
+_Platform_export({'Counter':{'init':$author$project$Counter$main($gren_lang$core$Json$Decode$succeed({  }))(0)}});}(this.module ? this.module.exports : this));

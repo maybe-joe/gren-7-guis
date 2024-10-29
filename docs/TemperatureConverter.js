@@ -1,17 +1,3 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Main</title>
-  <style>body { padding: 0; margin: 0; }</style>
-</head>
-
-<body>
-
-<pre id="gren"></pre>
-
-<script>
-try {
 (function(scope){
 'use strict';
 
@@ -91,8 +77,7 @@ function A9(fun, a, b, c, d, e, f, g, h, i) {
   return fun.a === 9 ? fun.f(a, b, c, d, e, f, g, h, i) : fun(a)(b)(c)(d)(e)(f)(g)(h)(i);
 }
 
-var $author$project$Main$OneWay = { $: 'OneWay' };
-var $author$project$Main$init = { departOn: '01.01.2024', flightType: $author$project$Main$OneWay, returnOn: '01.01.2024' };
+var $author$project$TemperatureConverter$init = { celsius: '1.0', fahrenheit: '1.0' };
 
 
 // ELEMENT
@@ -4449,42 +4434,51 @@ var $gren_lang$browser$Browser$sandbox = function(impl) {
 				return { command: $gren_lang$core$Platform$Cmd$none, model: A2(impl.update, msg, model) };
 			}), view: impl.view });
 };
-var $author$project$Main$ReturnFlight = { $: 'ReturnFlight' };
-var $author$project$Main$flightTypeFromString = function(str) {
-	if (str === 'Return flight') {
-		return $author$project$Main$ReturnFlight;
+var $gren_lang$core$Basics$fdiv = _Basics_fdiv;
+var $gren_lang$core$Basics$mul = _Basics_mul;
+var $author$project$TemperatureConverter$celsiusToFahrenheit = function(celsius) {
+	return (celsius * (9.0 / 5.0)) + 32.0;
+};
+var $gren_lang$core$Basics$sub = _Basics_sub;
+var $author$project$TemperatureConverter$fahrenheitToCelsius = function(fahrenheit) {
+	return (fahrenheit - 32) * (5.0 / 9.0);
+};
+var $gren_lang$core$String$fromFloat = _String_fromNumber;
+var $gren_lang$core$Maybe$map$ = function(f, maybe) {
+	if (maybe.$ === 'Just') {
+		var value = maybe.a;
+		return $gren_lang$core$Maybe$Just(f(value));
 	} else {
-		return $author$project$Main$OneWay;
+		return $gren_lang$core$Maybe$Nothing;
 	}
 };
-var $author$project$Main$update$ = function(msg, model) {
-	switch (msg.$) {
-		case 'OnInputFlightType':
-			var value = msg.a;
-			return _Utils_update(model, { flightType: $author$project$Main$flightTypeFromString(value) });
-		case 'OnInputDepartOn':
-			var value = msg.a;
-			return _Utils_update(model, { departOn: value });
-		default:
-			var value = msg.a;
-			return _Utils_update(model, { returnOn: value });
+var $gren_lang$core$Maybe$map = F2($gren_lang$core$Maybe$map$);
+var $gren_lang$core$String$toFloat = _String_toFloat;
+var $gren_lang$core$Maybe$withDefault$ = function(_default, maybe) {
+	if (maybe.$ === 'Just') {
+		var value = maybe.a;
+		return value;
+	} else {
+		return _default;
 	}
 };
-var $author$project$Main$update = F2($author$project$Main$update$);
-var $author$project$Main$OnInputDepartOn = function (a) {
-	return { $: 'OnInputDepartOn', a: a };
+var $gren_lang$core$Maybe$withDefault = F2($gren_lang$core$Maybe$withDefault$);
+var $author$project$TemperatureConverter$update$ = function(msg, model) {
+	if (msg.$ === 'OnInputCelsius') {
+		var celsius = msg.a;
+		return { celsius: celsius, fahrenheit: $gren_lang$core$Maybe$withDefault$(model.fahrenheit, $gren_lang$core$Maybe$map$($gren_lang$core$String$fromFloat, $gren_lang$core$Maybe$map$($author$project$TemperatureConverter$celsiusToFahrenheit, $gren_lang$core$String$toFloat(celsius)))) };
+	} else {
+		var fahrenheit = msg.a;
+		return { celsius: $gren_lang$core$Maybe$withDefault$(model.celsius, $gren_lang$core$Maybe$map$($gren_lang$core$String$fromFloat, $gren_lang$core$Maybe$map$($author$project$TemperatureConverter$fahrenheitToCelsius, $gren_lang$core$String$toFloat(fahrenheit)))), fahrenheit: fahrenheit };
+	}
 };
-var $author$project$Main$OnInputFlightType = function (a) {
-	return { $: 'OnInputFlightType', a: a };
+var $author$project$TemperatureConverter$update = F2($author$project$TemperatureConverter$update$);
+var $author$project$TemperatureConverter$OnInputCelsius = function (a) {
+	return { $: 'OnInputCelsius', a: a };
 };
-var $author$project$Main$OnInputReturnOn = function (a) {
-	return { $: 'OnInputReturnOn', a: a };
+var $author$project$TemperatureConverter$OnInputFahrenheit = function (a) {
+	return { $: 'OnInputFahrenheit', a: a };
 };
-var $gren_lang$browser$VirtualDom$node = function(tag) {
-	return _VirtualDom_node(_VirtualDom_noScript(tag));
-};
-var $gren_lang$browser$Html$node = $gren_lang$browser$VirtualDom$node;
-var $gren_lang$browser$Html$button = $gren_lang$browser$Html$node('button');
 var $gren_lang$browser$VirtualDom$property$ = function(key, value) {
 	return A2(_VirtualDom_property, _VirtualDom_noInnerHtmlOrFormAction(key), _VirtualDom_noJavaScriptOrHtmlUri(value));
 };
@@ -4496,95 +4490,23 @@ var $gren_lang$browser$Html$Attributes$stringProperty$ = function(key, string) {
 };
 var $gren_lang$browser$Html$Attributes$stringProperty = F2($gren_lang$browser$Html$Attributes$stringProperty$);
 var $gren_lang$browser$Html$Attributes$class = $gren_lang$browser$Html$Attributes$stringProperty('className');
-var $gren_lang$core$Json$Encode$bool = _Json_wrap;
-var $gren_lang$browser$Html$Attributes$boolProperty$ = function(key, bool) {
-	return A2($gren_lang$browser$Html$Attributes$property, key, $gren_lang$core$Json$Encode$bool(bool));
+var $gren_lang$browser$VirtualDom$node = function(tag) {
+	return _VirtualDom_node(_VirtualDom_noScript(tag));
 };
-var $gren_lang$browser$Html$Attributes$boolProperty = F2($gren_lang$browser$Html$Attributes$boolProperty$);
-var $gren_lang$browser$Html$Attributes$disabled = $gren_lang$browser$Html$Attributes$boolProperty('disabled');
+var $gren_lang$browser$Html$node = $gren_lang$browser$VirtualDom$node;
 var $gren_lang$browser$Html$div = $gren_lang$browser$Html$node('div');
-var $author$project$Main$flightTypeToString = function(type_) {
-	if (type_.$ === 'ReturnFlight') {
-		return 'Return flight';
-	} else {
-		return 'One-way flight';
-	}
+var $author$project$TemperatureConverter$box = function(children) {
+	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('box') ], children);
 };
+var $gren_lang$browser$VirtualDom$style = _VirtualDom_style;
+var $gren_lang$browser$Html$Attributes$style = $gren_lang$browser$VirtualDom$style;
+var $author$project$TemperatureConverter$cluster = function(children) {
+	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('cluster'), A2($gren_lang$browser$Html$Attributes$style, 'align-items', 'baseline') ], children);
+};
+var $gren_lang$browser$Html$Attributes$for = $gren_lang$browser$Html$Attributes$stringProperty('htmlFor');
+var $gren_lang$browser$Html$Attributes$id = $gren_lang$browser$Html$Attributes$stringProperty('id');
 var $gren_lang$browser$Html$input = $gren_lang$browser$Html$node('input');
-var $gren_lang$core$Basics$compare = _Utils_compare;
-var $author$project$Main$compareDates$ = function(lhs, rhs) {
-	var order = [ A2($gren_lang$core$Basics$compare, lhs.year, rhs.year), A2($gren_lang$core$Basics$compare, lhs.month, rhs.month), A2($gren_lang$core$Basics$compare, lhs.day, rhs.day) ];
-	_v0$4:
-	while (true) {
-		if (order.length === 3) {
-			switch (order[0].$) {
-				case 'EQ':
-					if ((order[1].$ === 'EQ') && (order[2].$ === 'EQ')) {
-						var _v1 = order[0];
-						var _v2 = order[1];
-						var _v3 = order[2];
-						return $gren_lang$core$Basics$EQ;
-					} else {
-						break _v0$4;
-					}
-				case 'GT':
-					if (order[1].$ === 'GT') {
-						if (order[2].$ === 'GT') {
-							var _v4 = order[0];
-							var _v5 = order[1];
-							var _v6 = order[2];
-							return $gren_lang$core$Basics$GT;
-						} else {
-							var _v7 = order[0];
-							var _v8 = order[1];
-							return $gren_lang$core$Basics$GT;
-						}
-					} else {
-						var _v9 = order[0];
-						return $gren_lang$core$Basics$GT;
-					}
-				default:
-					break _v0$4;
-			}
-		} else {
-			break _v0$4;
-		}
-	}
-	return $gren_lang$core$Basics$LT;
-};
-var $author$project$Main$compareDates = F2($author$project$Main$compareDates$);
-var $gren_lang$core$Maybe$map2$ = function(func, ma, mb) {
-	if (ma.$ === 'Nothing') {
-		return $gren_lang$core$Maybe$Nothing;
-	} else {
-		var a = ma.a;
-		if (mb.$ === 'Nothing') {
-			return $gren_lang$core$Maybe$Nothing;
-		} else {
-			var b = mb.a;
-			return $gren_lang$core$Maybe$Just(A2(func, a, b));
-		}
-	}
-};
-var $gren_lang$core$Maybe$map2 = F3($gren_lang$core$Maybe$map2$);
-var $author$project$Main$isButtonDisabled$ = function(type_, departOn, returnOn) {
-	if (type_.$ === 'OneWay') {
-		return _Utils_eq(departOn, $gren_lang$core$Maybe$Nothing);
-	} else {
-		var order = $gren_lang$core$Maybe$map2$($author$project$Main$compareDates, departOn, returnOn);
-		if (order.$ === 'Just') {
-			if (order.a.$ === 'GT') {
-				var _v2 = order.a;
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return true;
-		}
-	}
-};
-var $author$project$Main$isButtonDisabled = F3($author$project$Main$isButtonDisabled$);
+var $gren_lang$browser$Html$label = $gren_lang$browser$Html$node('label');
 var $gren_lang$browser$Html$Events$alwaysStop = function(msg) {
 	return { message: msg, stopPropagation: true };
 };
@@ -4606,86 +4528,37 @@ var $gren_lang$browser$Html$Events$targetValue = $gren_lang$core$Json$Decode$at$
 var $gren_lang$browser$Html$Events$onInput = function(tagger) {
 	return $gren_lang$browser$Html$Events$stopPropagationOn$('input', A2($gren_lang$core$Json$Decode$map, $gren_lang$browser$Html$Events$alwaysStop, A2($gren_lang$core$Json$Decode$map, tagger, $gren_lang$browser$Html$Events$targetValue)));
 };
-var $gren_lang$browser$Html$option = $gren_lang$browser$Html$node('option');
-var $gren_lang$core$Array$flatMap = _Array_flatMap;
-var $gren_lang$core$Array$filterMap$ = function(mapper, array) {
-	return A2($gren_lang$core$Array$flatMap, function(v) {
-			var _v0 = mapper(v);
-			if (_v0.$ === 'Just') {
-				var newValue = _v0.a;
-				return [ newValue ];
-			} else {
-				return [  ];
-			}
-		}, array);
+var $gren_lang$browser$Html$Attributes$placeholder = $gren_lang$browser$Html$Attributes$stringProperty('placeholder');
+var $gren_lang$browser$Html$Attributes$step = function(n) {
+	return $gren_lang$browser$Html$Attributes$stringProperty$('step', n);
 };
-var $gren_lang$core$Array$filterMap = F2($gren_lang$core$Array$filterMap$);
-var $author$project$Main$parseDate = function(str) {
-	if ($gren_lang$core$String$length(str) === 10) {
-		var parts = $gren_lang$core$Array$filterMap$($gren_lang$core$String$toInt, A2($gren_lang$core$String$split, '.', str));
-		if (parts.length === 3) {
-			var day = parts[0];
-			var month = parts[1];
-			var year = parts[2];
-			return $gren_lang$core$Maybe$Just({ day: day, month: month, year: year });
-		} else {
-			return $gren_lang$core$Maybe$Nothing;
-		}
-	} else {
-		return $gren_lang$core$Maybe$Nothing;
-	}
+var $gren_lang$browser$VirtualDom$text = _VirtualDom_text;
+var $gren_lang$browser$Html$text = $gren_lang$browser$VirtualDom$text;
+var $gren_lang$browser$Html$Attributes$type_ = $gren_lang$browser$Html$Attributes$stringProperty('type');
+var $gren_lang$browser$Html$Attributes$value = $gren_lang$browser$Html$Attributes$stringProperty('value');
+var $author$project$TemperatureConverter$formControl = function(control) {
+	var _v0 = control;
+	var id = _v0.id;
+	var label = _v0.label;
+	var value = _v0.value;
+	var onInput = _v0.onInput;
+	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('display:contents') ], [ A2($gren_lang$browser$Html$input, [ A2($gren_lang$browser$Html$Attributes$style, 'text-align', 'end'), $gren_lang$browser$Html$Attributes$id(id), $gren_lang$browser$Html$Attributes$type_('number'), $gren_lang$browser$Html$Attributes$step('0.1'), $gren_lang$browser$Html$Attributes$placeholder('0.0'), $gren_lang$browser$Html$Attributes$value(value), $gren_lang$browser$Html$Events$onInput(onInput) ], [ $gren_lang$browser$Html$text(value) ]), A2($gren_lang$browser$Html$label, [ $gren_lang$browser$Html$Attributes$for(id) ], [ $gren_lang$browser$Html$text(label) ]) ]);
 };
-var $gren_lang$browser$Html$select = $gren_lang$browser$Html$node('select');
-var $author$project$Main$stack = function(children) {
-	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('stack'), $gren_lang$browser$Html$Attributes$class('max-inline-size:measure') ], children);
+var $author$project$TemperatureConverter$inputProperties$ = function(id, label, value, onInput) {
+	return { id: id, label: label, onInput: onInput, value: value };
 };
-var $gren_lang$browser$VirtualDom$style = _VirtualDom_style;
-var $gren_lang$browser$Html$Attributes$style = $gren_lang$browser$VirtualDom$style;
+var $author$project$TemperatureConverter$inputProperties = F4($author$project$TemperatureConverter$inputProperties$);
+var $gren_lang$browser$Html$p = $gren_lang$browser$Html$node('p');
 var $gren_lang$browser$VirtualDom$attribute$ = function(key, value) {
 	return A2(_VirtualDom_attribute, _VirtualDom_noOnOrFormAction(key), _VirtualDom_noJavaScriptOrHtmlUri(value));
 };
 var $gren_lang$browser$VirtualDom$attribute = F2($gren_lang$browser$VirtualDom$attribute$);
 var $gren_lang$browser$Html$Attributes$attribute = $gren_lang$browser$VirtualDom$attribute;
-var $author$project$Main$stylesheet = A3($gren_lang$browser$Html$node, 'link', [ A2($gren_lang$browser$Html$Attributes$attribute, 'rel', 'stylesheet'), A2($gren_lang$browser$Html$Attributes$attribute, 'href', 'styles.css') ], [  ]);
-var $gren_lang$browser$VirtualDom$text = _VirtualDom_text;
-var $gren_lang$browser$Html$text = $gren_lang$browser$VirtualDom$text;
-var $gren_lang$browser$Html$Attributes$value = $gren_lang$browser$Html$Attributes$stringProperty('value');
-var $author$project$Main$view = function(model) {
-	var returnOn = $author$project$Main$parseDate(model.returnOn);
-	var returnOnBackgroundColor = function () {
-		if (returnOn.$ === 'Nothing') {
-			return 'red';
-		} else {
-			return 'white';
-		}
-	}();
-	var departOn = $author$project$Main$parseDate(model.departOn);
-	var departOnBackgroundColor = function () {
-		if (departOn.$ === 'Nothing') {
-			return 'red';
-		} else {
-			return 'white';
-		}
-	}();
-	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('box') ], [ $author$project$Main$stylesheet, $author$project$Main$stack([ A2($gren_lang$browser$Html$select, [ $gren_lang$browser$Html$Events$onInput($author$project$Main$OnInputFlightType) ], [ A2($gren_lang$browser$Html$option, [  ], [ $gren_lang$browser$Html$text($author$project$Main$flightTypeToString($author$project$Main$OneWay)) ]), A2($gren_lang$browser$Html$option, [  ], [ $gren_lang$browser$Html$text($author$project$Main$flightTypeToString($author$project$Main$ReturnFlight)) ]) ]), A2($gren_lang$browser$Html$input, [ A2($gren_lang$browser$Html$Attributes$style, 'background-color', departOnBackgroundColor), $gren_lang$browser$Html$Attributes$value(model.departOn), $gren_lang$browser$Html$Events$onInput($author$project$Main$OnInputDepartOn) ], [  ]), A2($gren_lang$browser$Html$input, [ A2($gren_lang$browser$Html$Attributes$style, 'background-color', returnOnBackgroundColor), $gren_lang$browser$Html$Attributes$value(model.returnOn), $gren_lang$browser$Html$Attributes$disabled(_Utils_eq(model.flightType, $author$project$Main$OneWay)), $gren_lang$browser$Html$Events$onInput($author$project$Main$OnInputReturnOn) ], [  ]), A2($gren_lang$browser$Html$button, [ $gren_lang$browser$Html$Attributes$disabled($author$project$Main$isButtonDisabled$(model.flightType, departOn, returnOn)) ], [ $gren_lang$browser$Html$text('Book') ]) ]) ]);
+var $author$project$TemperatureConverter$stylesheet = A3($gren_lang$browser$Html$node, 'link', [ A2($gren_lang$browser$Html$Attributes$attribute, 'rel', 'stylesheet'), A2($gren_lang$browser$Html$Attributes$attribute, 'href', 'styles.css') ], [  ]);
+var $author$project$TemperatureConverter$view = function(model) {
+	var fahrenheit = $author$project$TemperatureConverter$inputProperties$('fahrenheit', 'Fahrenheit', model.fahrenheit, $author$project$TemperatureConverter$OnInputFahrenheit);
+	var celsius = $author$project$TemperatureConverter$inputProperties$('celsius', 'Celsius', model.celsius, $author$project$TemperatureConverter$OnInputCelsius);
+	return A2($gren_lang$browser$Html$div, [  ], [ $author$project$TemperatureConverter$stylesheet, $author$project$TemperatureConverter$box([ $author$project$TemperatureConverter$cluster([ $author$project$TemperatureConverter$formControl(celsius), A2($gren_lang$browser$Html$p, [  ], [ $gren_lang$browser$Html$text('=') ]), $author$project$TemperatureConverter$formControl(fahrenheit) ]) ]) ]);
 };
-var $author$project$Main$main = $gren_lang$browser$Browser$sandbox({ init: $author$project$Main$init, update: $author$project$Main$update, view: $author$project$Main$view });
-_Platform_export({'Main':{'init':$author$project$Main$main($gren_lang$core$Json$Decode$succeed({  }))(0)}});}(this.module ? this.module.exports : this));
-
-  var app = Gren.Main.init({ node: document.getElementById("gren") });
-}
-catch (e)
-{
-  // display initialization errors (e.g. bad flags, infinite recursion)
-  var header = document.createElement("h1");
-  header.style.fontFamily = "monospace";
-  header.innerText = "Initialization Error";
-  var pre = document.getElementById("gren");
-  document.body.insertBefore(header, pre);
-  pre.innerText = e;
-  throw e;
-}
-</script>
-
-</body>
-</html>
+var $author$project$TemperatureConverter$main = $gren_lang$browser$Browser$sandbox({ init: $author$project$TemperatureConverter$init, update: $author$project$TemperatureConverter$update, view: $author$project$TemperatureConverter$view });
+_Platform_export({'TemperatureConverter':{'init':$author$project$TemperatureConverter$main($gren_lang$core$Json$Decode$succeed({  }))(0)}});}(this.module ? this.module.exports : this));

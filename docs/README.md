@@ -1,3 +1,0 @@
-- [Counter](1-counter.html)
-- [Temperature Converter](2-temperature-converter.html)
-- [Flight Booker](3-flight-booker.html)

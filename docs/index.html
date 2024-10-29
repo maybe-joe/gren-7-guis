@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gren - 7 GUIs</title>
+    </head>
+
+    <body>
+        <div id="counter"></div>
+        <div id="temperature-converter"></div>
+        <div id="flight-booker"></div>
+
+        <script src="Counter.js"></script>
+        <script src="TemperatureConverter.js"></script>
+        <script src="FlightBooker.js"></script>
+
+        <script>
+            Gren.Counter.init({
+                node: document.getElementById("counter")
+            })
+
+            Gren.TemperatureConverter.init({
+                node: document.getElementById("temperature-converter")
+
+            })
+            Gren.FlightBooker.init({
+                node: document.getElementById("flight-booker")
+            })
+        </script>
+    </body>
+</html>
