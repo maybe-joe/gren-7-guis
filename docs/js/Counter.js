@@ -4480,19 +4480,11 @@ var $gren_lang$browser$Html$Attributes$boolProperty$ = function(key, bool) {
 };
 var $gren_lang$browser$Html$Attributes$boolProperty = F2($gren_lang$browser$Html$Attributes$boolProperty$);
 var $gren_lang$browser$Html$Attributes$readonly = $gren_lang$browser$Html$Attributes$boolProperty('readOnly');
-var $gren_lang$browser$VirtualDom$attribute$ = function(key, value) {
-	return A2(_VirtualDom_attribute, _VirtualDom_noOnOrFormAction(key), _VirtualDom_noJavaScriptOrHtmlUri(value));
-};
-var $gren_lang$browser$VirtualDom$attribute = F2($gren_lang$browser$VirtualDom$attribute$);
-var $gren_lang$browser$Html$Attributes$attribute = $gren_lang$browser$VirtualDom$attribute;
-var $author$project$Counter$stylesheet = function(href) {
-	return A3($gren_lang$browser$Html$node, 'link', [ A2($gren_lang$browser$Html$Attributes$attribute, 'rel', 'stylesheet'), A2($gren_lang$browser$Html$Attributes$attribute, 'href', href) ], [  ]);
-};
 var $gren_lang$browser$VirtualDom$text = _VirtualDom_text;
 var $gren_lang$browser$Html$text = $gren_lang$browser$VirtualDom$text;
 var $gren_lang$browser$Html$Attributes$value = $gren_lang$browser$Html$Attributes$stringProperty('value');
 var $author$project$Counter$view = function(model) {
-	return A2($gren_lang$browser$Html$div, [  ], [ $author$project$Counter$stylesheet('styles.css'), $author$project$Counter$box([ $author$project$Counter$cluster([ A2($gren_lang$browser$Html$input, [ $gren_lang$browser$Html$Attributes$readonly(true), $gren_lang$browser$Html$Attributes$value($gren_lang$core$String$fromInt(model)) ], [  ]), A2($gren_lang$browser$Html$button, [ $gren_lang$browser$Html$Events$onClick($author$project$Counter$Clicked) ], [ $gren_lang$browser$Html$text('Count') ]) ]) ]) ]);
+	return A2($gren_lang$browser$Html$div, [  ], [ $author$project$Counter$box([ $author$project$Counter$cluster([ A2($gren_lang$browser$Html$input, [ $gren_lang$browser$Html$Attributes$readonly(true), $gren_lang$browser$Html$Attributes$value($gren_lang$core$String$fromInt(model)) ], [  ]), A2($gren_lang$browser$Html$button, [ $gren_lang$browser$Html$Events$onClick($author$project$Counter$Clicked) ], [ $gren_lang$browser$Html$text('Count') ]) ]) ]) ]);
 };
 var $author$project$Counter$main = $gren_lang$browser$Browser$sandbox({ init: $author$project$Counter$init, update: $author$project$Counter$update, view: $author$project$Counter$view });
 _Platform_export({'Counter':{'init':$author$project$Counter$main($gren_lang$core$Json$Decode$succeed({  }))(0)}});}(this.module ? this.module.exports : this));

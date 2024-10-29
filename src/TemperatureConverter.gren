@@ -77,8 +77,7 @@ view model =
     in
     Html.div
         []
-        [ stylesheet
-        , box
+        [ box
             [ cluster
                 [ formControl celsius
                 , Html.p
@@ -89,16 +88,6 @@ view model =
                 ]
             ]
         ]
-
-
-stylesheet : Html Msg
-stylesheet =
-    Html.node
-        "link"
-        [ Attribute.attribute "rel" "stylesheet"
-        , Attribute.attribute "href" "styles.css"
-        ]
-        []
 
 
 box : Array (Html Msg) -> Html Msg

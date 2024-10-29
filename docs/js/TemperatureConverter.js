@@ -4549,16 +4549,10 @@ var $author$project$TemperatureConverter$inputProperties$ = function(id, label, 
 };
 var $author$project$TemperatureConverter$inputProperties = F4($author$project$TemperatureConverter$inputProperties$);
 var $gren_lang$browser$Html$p = $gren_lang$browser$Html$node('p');
-var $gren_lang$browser$VirtualDom$attribute$ = function(key, value) {
-	return A2(_VirtualDom_attribute, _VirtualDom_noOnOrFormAction(key), _VirtualDom_noJavaScriptOrHtmlUri(value));
-};
-var $gren_lang$browser$VirtualDom$attribute = F2($gren_lang$browser$VirtualDom$attribute$);
-var $gren_lang$browser$Html$Attributes$attribute = $gren_lang$browser$VirtualDom$attribute;
-var $author$project$TemperatureConverter$stylesheet = A3($gren_lang$browser$Html$node, 'link', [ A2($gren_lang$browser$Html$Attributes$attribute, 'rel', 'stylesheet'), A2($gren_lang$browser$Html$Attributes$attribute, 'href', 'styles.css') ], [  ]);
 var $author$project$TemperatureConverter$view = function(model) {
 	var fahrenheit = $author$project$TemperatureConverter$inputProperties$('fahrenheit', 'Fahrenheit', model.fahrenheit, $author$project$TemperatureConverter$OnInputFahrenheit);
 	var celsius = $author$project$TemperatureConverter$inputProperties$('celsius', 'Celsius', model.celsius, $author$project$TemperatureConverter$OnInputCelsius);
-	return A2($gren_lang$browser$Html$div, [  ], [ $author$project$TemperatureConverter$stylesheet, $author$project$TemperatureConverter$box([ $author$project$TemperatureConverter$cluster([ $author$project$TemperatureConverter$formControl(celsius), A2($gren_lang$browser$Html$p, [  ], [ $gren_lang$browser$Html$text('=') ]), $author$project$TemperatureConverter$formControl(fahrenheit) ]) ]) ]);
+	return A2($gren_lang$browser$Html$div, [  ], [ $author$project$TemperatureConverter$box([ $author$project$TemperatureConverter$cluster([ $author$project$TemperatureConverter$formControl(celsius), A2($gren_lang$browser$Html$p, [  ], [ $gren_lang$browser$Html$text('=') ]), $author$project$TemperatureConverter$formControl(fahrenheit) ]) ]) ]);
 };
 var $author$project$TemperatureConverter$main = $gren_lang$browser$Browser$sandbox({ init: $author$project$TemperatureConverter$init, update: $author$project$TemperatureConverter$update, view: $author$project$TemperatureConverter$view });
 _Platform_export({'TemperatureConverter':{'init':$author$project$TemperatureConverter$main($gren_lang$core$Json$Decode$succeed({  }))(0)}});}(this.module ? this.module.exports : this));

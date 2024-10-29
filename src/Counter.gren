@@ -38,8 +38,7 @@ view : Model -> Html Msg
 view model =
     Html.div
         []
-        [ stylesheet "styles.css"
-        , box
+        [ box
             [ cluster
                 [ Html.input
                     [ Attribute.readonly True
@@ -55,16 +54,6 @@ view model =
                 ]
             ]
         ]
-
-
-stylesheet : String -> Html Msg
-stylesheet href =
-    Html.node
-        "link"
-        [ Attribute.attribute "rel" "stylesheet"
-        , Attribute.attribute "href" href
-        ]
-        []
 
 
 cluster : Array (Html Msg) -> Html Msg
