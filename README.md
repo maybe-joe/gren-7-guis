@@ -3,7 +3,7 @@
 > [7GUIs](https://eugenkiss.github.io/7guis) is a set of small tasks, suitable for demonstrating how common GUI patterns can be implemented in a specific framework.
 > The following folders implement the solutions to the [7GUIs tasks](https://eugenkiss.github.io/7guis/tasks)
 
-This repo contains implementations of the 7GUIs tasks in the Gren language. I created it after seeing the official [Gren examples projects](https://github.com/gren-lang/example-projects) repo as a way to learn the language.
+This repo contains implementations of the 7GUIs tasks using the [Gren language](https://gren-lang.org). I created it after seeing the official [Gren examples projects](https://github.com/gren-lang/example-projects) repo as a way to learn the language.
 
 ## [Demo](https://maybe-joe.github.io/gren-7-guis)
 
