@@ -4466,11 +4466,6 @@ var $author$project$FlightBooker$OnInputFlightType = function (a) {
 var $author$project$FlightBooker$OnInputReturnOn = function (a) {
 	return { $: 'OnInputReturnOn', a: a };
 };
-var $gren_lang$browser$VirtualDom$node = function(tag) {
-	return _VirtualDom_node(_VirtualDom_noScript(tag));
-};
-var $gren_lang$browser$Html$node = $gren_lang$browser$VirtualDom$node;
-var $gren_lang$browser$Html$button = $gren_lang$browser$Html$node('button');
 var $gren_lang$browser$VirtualDom$property$ = function(key, value) {
 	return A2(_VirtualDom_property, _VirtualDom_noInnerHtmlOrFormAction(key), _VirtualDom_noJavaScriptOrHtmlUri(value));
 };
@@ -4482,13 +4477,21 @@ var $gren_lang$browser$Html$Attributes$stringProperty$ = function(key, string) {
 };
 var $gren_lang$browser$Html$Attributes$stringProperty = F2($gren_lang$browser$Html$Attributes$stringProperty$);
 var $gren_lang$browser$Html$Attributes$class = $gren_lang$browser$Html$Attributes$stringProperty('className');
+var $gren_lang$browser$VirtualDom$node = function(tag) {
+	return _VirtualDom_node(_VirtualDom_noScript(tag));
+};
+var $gren_lang$browser$Html$node = $gren_lang$browser$VirtualDom$node;
+var $gren_lang$browser$Html$div = $gren_lang$browser$Html$node('div');
+var $author$project$Layout$box = function(children) {
+	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('box') ], children);
+};
+var $gren_lang$browser$Html$button = $gren_lang$browser$Html$node('button');
 var $gren_lang$core$Json$Encode$bool = _Json_wrap;
 var $gren_lang$browser$Html$Attributes$boolProperty$ = function(key, bool) {
 	return A2($gren_lang$browser$Html$Attributes$property, key, $gren_lang$core$Json$Encode$bool(bool));
 };
 var $gren_lang$browser$Html$Attributes$boolProperty = F2($gren_lang$browser$Html$Attributes$boolProperty$);
 var $gren_lang$browser$Html$Attributes$disabled = $gren_lang$browser$Html$Attributes$boolProperty('disabled');
-var $gren_lang$browser$Html$div = $gren_lang$browser$Html$node('div');
 var $author$project$FlightBooker$flightTypeToString = function(type_) {
 	if (type_.$ === 'ReturnFlight') {
 		return 'Return flight';
@@ -4622,7 +4625,7 @@ var $author$project$FlightBooker$parseDate = function(str) {
 	}
 };
 var $gren_lang$browser$Html$select = $gren_lang$browser$Html$node('select');
-var $author$project$FlightBooker$stack = function(children) {
+var $author$project$Layout$stack = function(children) {
 	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('stack'), $gren_lang$browser$Html$Attributes$class('max-inline-size:measure') ], children);
 };
 var $gren_lang$browser$VirtualDom$style = _VirtualDom_style;
@@ -4647,7 +4650,7 @@ var $author$project$FlightBooker$view = function(model) {
 			return 'white';
 		}
 	}();
-	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('box') ], [ $author$project$FlightBooker$stack([ A2($gren_lang$browser$Html$select, [ $gren_lang$browser$Html$Events$onInput($author$project$FlightBooker$OnInputFlightType) ], [ A2($gren_lang$browser$Html$option, [  ], [ $gren_lang$browser$Html$text($author$project$FlightBooker$flightTypeToString($author$project$FlightBooker$OneWay)) ]), A2($gren_lang$browser$Html$option, [  ], [ $gren_lang$browser$Html$text($author$project$FlightBooker$flightTypeToString($author$project$FlightBooker$ReturnFlight)) ]) ]), A2($gren_lang$browser$Html$input, [ A2($gren_lang$browser$Html$Attributes$style, 'background-color', departOnBackgroundColor), $gren_lang$browser$Html$Attributes$value(model.departOn), $gren_lang$browser$Html$Events$onInput($author$project$FlightBooker$OnInputDepartOn) ], [  ]), A2($gren_lang$browser$Html$input, [ A2($gren_lang$browser$Html$Attributes$style, 'background-color', returnOnBackgroundColor), $gren_lang$browser$Html$Attributes$value(model.returnOn), $gren_lang$browser$Html$Attributes$disabled(_Utils_eq(model.flightType, $author$project$FlightBooker$OneWay)), $gren_lang$browser$Html$Events$onInput($author$project$FlightBooker$OnInputReturnOn) ], [  ]), A2($gren_lang$browser$Html$button, [ $gren_lang$browser$Html$Attributes$disabled($author$project$FlightBooker$isButtonDisabled$(model.flightType, departOn, returnOn)) ], [ $gren_lang$browser$Html$text('Book') ]) ]) ]);
+	return $author$project$Layout$box([ $author$project$Layout$stack([ A2($gren_lang$browser$Html$select, [ $gren_lang$browser$Html$Events$onInput($author$project$FlightBooker$OnInputFlightType) ], [ A2($gren_lang$browser$Html$option, [  ], [ $gren_lang$browser$Html$text($author$project$FlightBooker$flightTypeToString($author$project$FlightBooker$OneWay)) ]), A2($gren_lang$browser$Html$option, [  ], [ $gren_lang$browser$Html$text($author$project$FlightBooker$flightTypeToString($author$project$FlightBooker$ReturnFlight)) ]) ]), A2($gren_lang$browser$Html$input, [ A2($gren_lang$browser$Html$Attributes$style, 'background-color', departOnBackgroundColor), $gren_lang$browser$Html$Attributes$value(model.departOn), $gren_lang$browser$Html$Events$onInput($author$project$FlightBooker$OnInputDepartOn) ], [  ]), A2($gren_lang$browser$Html$input, [ A2($gren_lang$browser$Html$Attributes$style, 'background-color', returnOnBackgroundColor), $gren_lang$browser$Html$Attributes$value(model.returnOn), $gren_lang$browser$Html$Attributes$disabled(_Utils_eq(model.flightType, $author$project$FlightBooker$OneWay)), $gren_lang$browser$Html$Events$onInput($author$project$FlightBooker$OnInputReturnOn) ], [  ]), A2($gren_lang$browser$Html$button, [ $gren_lang$browser$Html$Attributes$disabled($author$project$FlightBooker$isButtonDisabled$(model.flightType, departOn, returnOn)) ], [ $gren_lang$browser$Html$text('Book') ]) ]) ]);
 };
 var $author$project$FlightBooker$main = $gren_lang$browser$Browser$sandbox({ init: $author$project$FlightBooker$init, update: $author$project$FlightBooker$update, view: $author$project$FlightBooker$view });
 _Platform_export({'FlightBooker':{'init':$author$project$FlightBooker$main($gren_lang$core$Json$Decode$succeed({  }))(0)}});}(this.module ? this.module.exports : this));

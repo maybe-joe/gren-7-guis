@@ -4455,11 +4455,11 @@ var $gren_lang$browser$VirtualDom$node = function(tag) {
 };
 var $gren_lang$browser$Html$node = $gren_lang$browser$VirtualDom$node;
 var $gren_lang$browser$Html$div = $gren_lang$browser$Html$node('div');
-var $author$project$Counter$box = function(children) {
+var $author$project$Layout$box = function(children) {
 	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('box') ], children);
 };
 var $gren_lang$browser$Html$button = $gren_lang$browser$Html$node('button');
-var $author$project$Counter$cluster = function(children) {
+var $author$project$Layout$cluster = function(children) {
 	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('cluster') ], children);
 };
 var $gren_lang$browser$Html$input = $gren_lang$browser$Html$node('input');
@@ -4484,7 +4484,7 @@ var $gren_lang$browser$VirtualDom$text = _VirtualDom_text;
 var $gren_lang$browser$Html$text = $gren_lang$browser$VirtualDom$text;
 var $gren_lang$browser$Html$Attributes$value = $gren_lang$browser$Html$Attributes$stringProperty('value');
 var $author$project$Counter$view = function(model) {
-	return A2($gren_lang$browser$Html$div, [  ], [ $author$project$Counter$box([ $author$project$Counter$cluster([ A2($gren_lang$browser$Html$input, [ $gren_lang$browser$Html$Attributes$readonly(true), $gren_lang$browser$Html$Attributes$value($gren_lang$core$String$fromInt(model)) ], [  ]), A2($gren_lang$browser$Html$button, [ $gren_lang$browser$Html$Events$onClick($author$project$Counter$Clicked) ], [ $gren_lang$browser$Html$text('Count') ]) ]) ]) ]);
+	return A2($gren_lang$browser$Html$div, [  ], [ $author$project$Layout$box([ $author$project$Layout$cluster([ A2($gren_lang$browser$Html$input, [ $gren_lang$browser$Html$Attributes$readonly(true), $gren_lang$browser$Html$Attributes$value($gren_lang$core$String$fromInt(model)) ], [  ]), A2($gren_lang$browser$Html$button, [ $gren_lang$browser$Html$Events$onClick($author$project$Counter$Clicked) ], [ $gren_lang$browser$Html$text('Count') ]) ]) ]) ]);
 };
 var $author$project$Counter$main = $gren_lang$browser$Browser$sandbox({ init: $author$project$Counter$init, update: $author$project$Counter$update, view: $author$project$Counter$view });
 _Platform_export({'Counter':{'init':$author$project$Counter$main($gren_lang$core$Json$Decode$succeed({  }))(0)}});}(this.module ? this.module.exports : this));

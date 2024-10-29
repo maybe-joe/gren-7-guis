@@ -4495,13 +4495,11 @@ var $gren_lang$browser$VirtualDom$node = function(tag) {
 };
 var $gren_lang$browser$Html$node = $gren_lang$browser$VirtualDom$node;
 var $gren_lang$browser$Html$div = $gren_lang$browser$Html$node('div');
-var $author$project$TemperatureConverter$box = function(children) {
+var $author$project$Layout$box = function(children) {
 	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('box') ], children);
 };
-var $gren_lang$browser$VirtualDom$style = _VirtualDom_style;
-var $gren_lang$browser$Html$Attributes$style = $gren_lang$browser$VirtualDom$style;
-var $author$project$TemperatureConverter$cluster = function(children) {
-	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('cluster'), A2($gren_lang$browser$Html$Attributes$style, 'align-items', 'baseline') ], children);
+var $author$project$Layout$cluster = function(children) {
+	return A2($gren_lang$browser$Html$div, [ $gren_lang$browser$Html$Attributes$class('cluster') ], children);
 };
 var $gren_lang$browser$Html$Attributes$for = $gren_lang$browser$Html$Attributes$stringProperty('htmlFor');
 var $gren_lang$browser$Html$Attributes$id = $gren_lang$browser$Html$Attributes$stringProperty('id');
@@ -4532,6 +4530,8 @@ var $gren_lang$browser$Html$Attributes$placeholder = $gren_lang$browser$Html$Att
 var $gren_lang$browser$Html$Attributes$step = function(n) {
 	return $gren_lang$browser$Html$Attributes$stringProperty$('step', n);
 };
+var $gren_lang$browser$VirtualDom$style = _VirtualDom_style;
+var $gren_lang$browser$Html$Attributes$style = $gren_lang$browser$VirtualDom$style;
 var $gren_lang$browser$VirtualDom$text = _VirtualDom_text;
 var $gren_lang$browser$Html$text = $gren_lang$browser$VirtualDom$text;
 var $gren_lang$browser$Html$Attributes$type_ = $gren_lang$browser$Html$Attributes$stringProperty('type');
@@ -4552,7 +4552,7 @@ var $gren_lang$browser$Html$p = $gren_lang$browser$Html$node('p');
 var $author$project$TemperatureConverter$view = function(model) {
 	var fahrenheit = $author$project$TemperatureConverter$inputProperties$('fahrenheit', 'Fahrenheit', model.fahrenheit, $author$project$TemperatureConverter$OnInputFahrenheit);
 	var celsius = $author$project$TemperatureConverter$inputProperties$('celsius', 'Celsius', model.celsius, $author$project$TemperatureConverter$OnInputCelsius);
-	return A2($gren_lang$browser$Html$div, [  ], [ $author$project$TemperatureConverter$box([ $author$project$TemperatureConverter$cluster([ $author$project$TemperatureConverter$formControl(celsius), A2($gren_lang$browser$Html$p, [  ], [ $gren_lang$browser$Html$text('=') ]), $author$project$TemperatureConverter$formControl(fahrenheit) ]) ]) ]);
+	return A2($gren_lang$browser$Html$div, [  ], [ $author$project$Layout$box([ $author$project$Layout$cluster([ $author$project$TemperatureConverter$formControl(celsius), A2($gren_lang$browser$Html$p, [  ], [ $gren_lang$browser$Html$text('=') ]), $author$project$TemperatureConverter$formControl(fahrenheit) ]) ]) ]);
 };
 var $author$project$TemperatureConverter$main = $gren_lang$browser$Browser$sandbox({ init: $author$project$TemperatureConverter$init, update: $author$project$TemperatureConverter$update, view: $author$project$TemperatureConverter$view });
 _Platform_export({'TemperatureConverter':{'init':$author$project$TemperatureConverter$main($gren_lang$core$Json$Decode$succeed({  }))(0)}});}(this.module ? this.module.exports : this));

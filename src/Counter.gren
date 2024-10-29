@@ -4,6 +4,7 @@ import Browser
 import Html exposing ( Html )
 import Html.Attributes as Attribute
 import Html.Events as Event
+import Layout exposing ( box, cluster )
 
 
 main =
@@ -54,19 +55,3 @@ view model =
                 ]
             ]
         ]
-
-
-cluster : Array (Html Msg) -> Html Msg
-cluster children =
-    Html.div
-        [ Attribute.class "cluster"
-        ]
-        children
-
-
-box : Array (Html Msg) -> Html Msg
-box children =
-    Html.div
-        [ Attribute.class "box"
-        ]
-        children

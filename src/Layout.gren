@@ -1,0 +1,29 @@
+module Layout exposing ( cluster, box, stack )
+
+import Html exposing ( Html )
+import Html.Attributes as Attribute
+
+
+cluster : Array (Html msg) -> Html msg
+cluster children =
+    Html.div
+        [ Attribute.class "cluster"
+        ]
+        children
+
+
+box : Array (Html msg) -> Html msg
+box children =
+    Html.div
+        [ Attribute.class "box"
+        ]
+        children
+
+
+stack : Array (Html msg) -> Html msg
+stack children =
+    Html.div
+        [ Attribute.class "stack"
+        , Attribute.class "max-inline-size:measure"
+        ]
+        children

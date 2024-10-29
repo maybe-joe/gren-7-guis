@@ -4,6 +4,7 @@ import Browser
 import Html exposing ( Html )
 import Html.Attributes as Attribute
 import Html.Events as Event
+import Layout exposing ( box, stack )
 
 
 main =
@@ -73,9 +74,7 @@ view model =
                 _ ->
                     "white"
     in
-    Html.div
-        [ Attribute.class "box"
-        ]
+    box
         [ stack
             [ Html.select
                 [ Event.onInput OnInputFlightType
@@ -109,15 +108,6 @@ view model =
                 ]
             ]
         ]
-
-
-stack : Array (Html Msg) -> Html Msg
-stack children =
-    Html.div
-        [ Attribute.class "stack"
-        , Attribute.class "max-inline-size:measure"
-        ]
-        children
 
 
 isButtonDisabled : FlightType -> Maybe Date -> Maybe Date -> Bool
