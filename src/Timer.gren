@@ -1,0 +1,126 @@
+module Timer exposing ( main )
+
+import Browser
+import Html exposing ( Html )
+import Html.Attributes as Attribute
+import Html.Events as Event
+import Layout exposing ( box, cluster, stack )
+import Time
+
+
+main =
+    Browser.element
+        { init = init
+        , view = view
+        , update =
+            \msg model ->
+                { model = update msg model
+                , command = Cmd.none
+                }
+        , subscriptions = subscriptions
+        }
+
+
+type alias Model =
+    { tick : Float
+    , limit : Float
+    }
+
+
+init :
+    {}
+    -> { model : Model
+       , command : Cmd Msg
+       }
+init _ =
+    { model =
+        { tick = 0
+        , limit = 30
+        }
+    , command = Cmd.none
+    }
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    if model.tick < model.limit then
+        Time.every 100 Tick
+    else
+        Sub.none
+
+
+type Msg
+    = Tick Time.Posix
+    | OnInputDuration String
+    | OnClickReset
+
+
+update : Msg -> Model -> Model
+update msg model =
+    case msg of
+        Tick _ ->
+            { model | tick = model.tick + 1 }
+
+        OnInputDuration value ->
+            { model
+                | limit =
+                    String.toFloat value
+                        |> Maybe.withDefault 0
+            }
+
+        OnClickReset ->
+            { model | tick = 0 }
+
+
+view : Model -> Html Msg
+view model =
+    let
+        value =
+            String.fromFloat model.tick
+
+        max =
+            String.fromFloat model.limit
+    in
+    box
+        [ stack
+            [ cluster
+                [ Html.p
+                    []
+                    [ Html.text (formatSeconds model.tick)
+                    ]
+                , Html.p
+                    []
+                    [ Html.text (formatSeconds model.limit)
+                    ]
+                ]
+            , Html.progress
+                [ Attribute.value value
+                , Attribute.max max
+                ]
+                []
+            , Html.input
+                [ Attribute.type_ "range"
+                , Attribute.value max
+                , Attribute.max "100"
+                , Event.onInput OnInputDuration
+                ]
+                []
+            , Html.button
+                [ Event.onClick OnClickReset
+                ]
+                [ Html.text "Reset"
+                ]
+            ]
+        ]
+
+
+formatSeconds : Float -> String
+formatSeconds value =
+    let
+        seconds =
+            String.fromFloat (value / 10)
+    in
+    if String.contains "." seconds then
+        seconds ++ "s"
+    else
+        seconds ++ ".0s"

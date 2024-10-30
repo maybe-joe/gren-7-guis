@@ -14,7 +14,7 @@ This repo contains implementations of the 7GUIs tasks using the [Gren language](
 3. Flight Booker
     [Code](src/FlightBooker.gren)
 4. Timer
-    (Todo)
+    [Code](src/Timer.gren)
 5. CRUD
     (Todo)
 6. Circle Drawer

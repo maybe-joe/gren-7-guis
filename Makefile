@@ -1,7 +1,8 @@
 projects := \
 	"Counter" \
 	"TemperatureConverter" \
-	"FlightBooker"
+	"FlightBooker" \
+	"Timer"
 
 .PHONY: $(projects)
 

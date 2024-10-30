@@ -11,10 +11,12 @@
         <div id="counter"></div>
         <div id="temperature-converter"></div>
         <div id="flight-booker"></div>
+        <div id="timer"></div>
 
         <script src="js/Counter.js"></script>
         <script src="js/TemperatureConverter.js"></script>
         <script src="js/FlightBooker.js"></script>
+        <script src="js/Timer.js"></script>
 
         <script>
             Gren.Counter.init({
@@ -25,8 +27,13 @@
                 node: document.getElementById("temperature-converter")
 
             })
+
             Gren.FlightBooker.init({
                 node: document.getElementById("flight-booker")
+            })
+
+            Gren.Timer.init({
+                node: document.getElementById("timer")
             })
         </script>
     </body>
